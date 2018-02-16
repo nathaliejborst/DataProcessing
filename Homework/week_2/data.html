@@ -474,7 +474,7 @@ var datePositions = dateAxis();
 drawAxis();
 addAxisLabels();
 
-
+// Draws bot axis' and their scales
 function drawAxis () {
   // Draw the y-axis
   ctx.beginPath();
@@ -573,13 +573,6 @@ function addAxisLabels () {
 
 
 function createTransform(domain, range){
-	// domain is a two-element array of the data bounds [domain_min, domain_max]
-	// range is a two-element array of the screen bounds [range_min, range_max]
-	// this gives you two equations to solve:
-	// range_min = alpha * domain_min + beta
-	// range_max = alpha * domain_max + beta
- 		// a solution would be:
-
     var domain_min  = domain[0]
     var domain_max  = domain[1]
     var range_min   = range[0]
@@ -595,6 +588,16 @@ function createTransform(domain, range){
     }
 }
 
+function reqListener () {
+  console.log(this.responseText);
+}
+
+var url = "https://github.com/nathaliejborst/DataProcessing/blob/master/Homework/week_2/Data";
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener('load', reqListener);
+oReq.open("get", url, true);
+oReq.send();
 
 
 </script>
