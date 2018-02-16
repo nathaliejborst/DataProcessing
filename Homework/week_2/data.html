@@ -1,0 +1,600 @@
+<!doctype html>
+<h3> <font face="calibri" color="blue">Temperatures de Bilt 2014 - 2015 </font> </h3>
+<body>
+  <a>
+    <br> <font face="calibri" size="2">Data Processing week 2 </font> </br>
+    <br> <font face="calibri" size="2">Student: Nathalie Borst (10789030) </font> </br>
+    <br> <font face="calibri" size="2">Student: Nathalie Borst (10789030) </font> </br>
+    <br> <font face="calibri" size="2">Source: KNMI </font> </p>
+</a>
+  <canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
+</body>
+
+<textarea id="rawdata">
+#date,maxtemp
+20140201,	64
+20140202,	51
+20140203,	39
+20140204,	58
+20140205,	74
+20140206,	78
+20140207,	76
+20140208,	69
+20140209,	59
+20140210,	51
+20140211,	60
+20140212,	58
+20140213,	49
+20140214,	51
+20140215,	100
+20140216,	57
+20140217,	60
+20140218,	60
+20140219,	78
+20140220,	82
+20140221,	70
+20140222,	66
+20140223,	75
+20140224,	78
+20140225,	87
+20140226,	67
+20140227,	49
+20140228,	54
+20140301,	59
+20140302,	62
+20140303,	49
+20140304,	52
+20140305,	56
+20140306,	65
+20140307,	78
+20140308,	87
+20140309,	113
+20140310,	98
+20140311,	93
+20140312,	83
+20140313,	79
+20140314,	67
+20140315,	99
+20140316,	105
+20140317,	102
+20140318,	93
+20140319,	113
+20140320,	129
+20140321,	78
+20140322,	66
+20140323,	52
+20140324,	56
+20140325,	48
+20140326,	45
+20140327,	86
+20140328,	110
+20140329,	115
+20140330,	123
+20140331,	147
+20140401,	127
+20140402,	137
+20140403,	152
+20140404,	130
+20140405,	119
+20140406,	131
+20140407,	156
+20140408,	91
+20140409,	107
+20140410,	121
+20140411,	113
+20140412,	99
+20140413,	105
+20140414,	89
+20140415,	72
+20140416,	74
+20140417,	109
+20140418,	86
+20140419,	112
+20140420,	155
+20140421,	124
+20140422,	125
+20140423,	134
+20140424,	136
+20140425,	171
+20140426,	142
+20140427,	116
+20140428,	132
+20140429,	138
+20140430,	131
+20140501,	130
+20140502,	100
+20140503,	84
+20140504,	79
+20140505,	122
+20140506,	146
+20140507,	127
+20140508,	122
+20140509,	125
+20140510,	116
+20140511,	102
+20140512,	108
+20140513,	103
+20140514,	96
+20140515,	101
+20140516,	121
+20140517,	142
+20140518,	159
+20140519,	184
+20140520,	199
+20140521,	181
+20140522,	182
+20140523,	164
+20140524,	150
+20140525,	160
+20140526,	158
+20140527,	156
+20140528,	131
+20140529,	104
+20140530,	119
+20140531,	133
+20140601,	135
+20140602,	140
+20140603,	151
+20140604,	146
+20140605,	130
+20140606,	163
+20140607,	210
+20140608,	200
+20140609,	216
+20140610,	204
+20140611,	175
+20140612,	171
+20140613,	178
+20140614,	160
+20140615,	156
+20140616,	148
+20140617,	153
+20140618,	149
+20140619,	142
+20140620,	140
+20140621,	160
+20140622,	153
+20140623,	154
+20140624,	160
+20140625,	147
+20140626,	167
+20140627,	175
+20140628,	171
+20140629,	160
+20140630,	141
+20140701,	142
+20140702,	150
+20140703,	184
+20140704,	216
+20140705,	199
+20140706,	190
+20140707,	181
+20140708,	152
+20140709,	156
+20140710,	216
+20140711,	200
+20140712,	190
+20140713,	187
+20140714,	184
+20140715,	173
+20140716,	195
+20140717,	219
+20140718,	251
+20140719,	264
+20140720,	221
+20140721,	195
+20140722,	226
+20140723,	232
+20140724,	215
+20140725,	185
+20140726,	209
+20140727,	212
+20140728,	195
+20140729,	212
+20140730,	184
+20140731,	188
+20140801,	203
+20140802,	205
+20140803,	196
+20140804,	184
+20140805,	177
+20140806,	176
+20140807,	182
+20140808,	185
+20140809,	191
+20140810,	182
+20140811,	171
+20140812,	163
+20140813,	167
+20140814,	162
+20140815,	155
+20140816,	161
+20140817,	149
+20140818,	138
+20140819,	124
+20140820,	126
+20140821,	138
+20140822,	136
+20140823,	127
+20140824,	125
+20140825,	127
+20140826,	137
+20140827,	142
+20140828,	172
+20140829,	173
+20140830,	163
+20140831,	151
+20140901,	153
+20140902,	167
+20140903,	163
+20140904,	177
+20140905,	176
+20140906,	166
+20140907,	170
+20140908,	141
+20140909,	145
+20140910,	139
+20140911,	159
+20140912,	156
+20140913,	170
+20140914,	157
+20140915,	168
+20140916,	175
+20140917,	180
+20140918,	193
+20140919,	178
+20140920,	178
+20140921,	158
+20140922,	134
+20140923,	126
+20140924,	130
+20140925,	142
+20140926,	153
+20140927,	133
+20140928,	147
+20140929,	160
+20140930,	162
+20141001,	159
+20141002,	157
+20141003,	150
+20141004,	156
+20141005,	132
+20141006,	138
+20141007,	122
+20141008,	132
+20141009,	150
+20141010,	134
+20141011,	113
+20141012,	119
+20141013,	151
+20141014,	124
+20141015,	137
+20141016,	142
+20141017,	146
+20141018,	173
+20141019,	171
+20141020,	151
+20141021,	112
+20141022,	100
+20141023,	124
+20141024,	116
+20141025,	126
+20141026,	127
+20141027,	127
+20141028,	99
+20141029,	110
+20141030,	130
+20141031,	135
+20141101,	141
+20141102,	148
+20141103,	125
+20141104,	89
+20141105,	60
+20141106,	61
+20141107,	77
+20141108,	98
+20141109,	95
+20141110,	96
+20141111,	95
+20141112,	93
+20141113,	79
+20141114,	103
+20141115,	97
+20141116,	84
+20141117,	95
+20141118,	79
+20141119,	80
+20141120,	71
+20141121,	52
+20141122,	83
+20141123,	106
+20141124,	65
+20141125,	41
+20141126,	49
+20141127,	74
+20141128,	63
+20141129,	28
+20141130,	25
+20141201,	15
+20141202,	6
+20141203,	-12
+20141204,	-3
+20141205,	35
+20141206,	32
+20141207,	34
+20141208,	32
+20141209,	22
+20141210,	65
+20141211,	65
+20141212,	75
+20141213,	47
+20141214,	25
+20141215,	56
+20141216,	52
+20141217,	80
+20141218,	115
+20141219,	94
+20141220,	77
+20141221,	78
+20141222,	114
+20141223,	111
+20141224,	81
+20141225,	52
+20141226,	19
+20141227,	7
+20141228,	-9
+20141229,	35
+20141230,	50
+20141231,	52
+20150101,	30
+20150102,	73
+20150103,	38
+20150104,	39
+20150105,	24
+20150106,	28
+20150107,	45
+20150108,	65
+20150109,	99
+20150110,	95
+20150111,	64
+20150112,	84
+20150113,	86
+20150114,	44
+20150115,	79
+20150116,	55
+20150117,	30
+20150118,	22
+20150119,	10
+20150120,	8
+20150121,	-5
+20150122,	-12
+20150123,	-28
+20150124,	22
+20150125,	37
+20150126,	59
+20150127,	51
+20150128,	53
+20150129,	24
+20150130,	17
+20150131,	10
+20150201,	26
+</textarea>
+<script>
+// Get the text from the textarea trough javascript
+var textValues = document.getElementById("rawdata").value;
+
+// Seperate every line into a arraylist item
+var arrayOfValues = textValues.split("\n");
+
+var dates           = [];
+var stringDates     = [];
+var milidates       = [];
+var temperatures    = [];
+var domainTemp      = [];
+var rangeTemp       = [];
+var domainDate      = [];
+var rangeDate       = [];
+var positionYaxis   = 25;
+var positionXaxis   = 295;
+var canvasWidth     = 775;
+var canvasHeight    = 350;
+var graphWidth      = 732;
+var graphHeight     = 300;
+var dateLabels      = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+                      "Oct", "Nov", "Dec", "Jan"];
+
+// Loop over all the lines, start at 1 because 0'th element is the header
+for (var i = 1; i < arrayOfValues.length - 1; i += 1) {
+  // Seperate date and value for every line
+  var oneLine = arrayOfValues[i].split(",");
+
+  // Convert date to date format
+  var dateString  = oneLine[0];
+  var year        = dateString.substring(0,4);
+  var month       = dateString.substring(4,6);
+  var day         = dateString.substring(6,8);
+  var date        = new Date(year, month-1, day);
+
+  // Add dates in miliseconds to list
+  milidates.push(date.getTime())
+  // Add dates as string to list
+  stringDates.push(dateString);
+
+  // Convert temperature to number format
+  var temperature = Number(oneLine[1])
+
+  // Add dates and temperature both to different arrays
+  dates.push(date);
+  temperatures.push(temperature)
+}
+
+// Get the domain and range for the temperatures
+domainTemp.push(Math.max.apply(Math, temperatures));
+domainTemp.push(Math.min.apply(Math, temperatures));
+rangeTemp.push(0);
+rangeTemp.push(graphHeight);
+
+// Get the domain and range for the dates
+domainDate.push(0);
+domainDate.push(milidates.length);
+rangeDate.push(canvasWidth - graphWidth);
+rangeDate.push(canvasWidth);
+
+// Get transformation functions
+var temperatureTransform = createTransform(domainTemp, rangeTemp);
+var dateTransform = createTransform(domainDate, rangeDate);
+console.log(dateTransform(55));
+
+// Get the canvas from the HTML and set the dimensions
+var canvas    = document.getElementById('myCanvas');
+var ctx       = canvas.getContext('2d');
+canvas.width  = canvasWidth;
+canvas.height = canvasHeight;
+
+// Draw the graph
+ctx.beginPath();
+ctx.strokeStyle = 'blue';
+
+for (var i = 0; i < temperatures.length - 1; i += 1) {
+  if (i == 0) {
+    ctx.moveTo(dateTransform(i), temperatureTransform(temperatures[i]));
+  }
+  ctx.lineTo(dateTransform(i), temperatureTransform(temperatures[i]));
+}
+ctx.stroke();
+
+// Draw the zero temperature line
+ctx.beginPath();
+ctx.strokeStyle = 'red';
+ctx.moveTo(canvasWidth - graphWidth, temperatureTransform(0));
+ctx.lineTo(canvasWidth, temperatureTransform(0));
+ctx.stroke();
+
+var datePositions = dateAxis();
+drawAxis();
+addAxisLabels();
+
+
+function drawAxis () {
+  // Draw the y-axis
+  ctx.beginPath();
+  ctx.strokeStyle = 'black';
+  ctx.moveTo(canvasWidth - graphWidth, 0);
+  ctx.lineTo(canvasWidth - graphWidth, graphHeight);
+  // Draw the x-axis
+  ctx.lineTo(canvasWidth, graphHeight);
+  ctx.stroke();
+
+  var temperatureRange = domainTemp[0] - domainTemp[1];
+  console.log(temperatureRange);
+
+  // Add scale to y-axis
+  for (var i = domainTemp[0]; i > domainTemp[1]; i -= 1) {
+    if (i % 12 == 0) {
+      // Draw scale on Y-axis
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      ctx.moveTo(canvasWidth - graphWidth, temperatureTransform(i));
+      ctx.lineTo(canvasWidth - graphWidth - 6, temperatureTransform(i));
+      ctx.stroke();
+
+      // Add temperatures to the Y-axis
+      ctx.font = "13px calibri";
+      ctx.fillText(i / 10,canvasWidth - graphWidth - 32,temperatureTransform(i));
+    }
+
+    // Add scale to x-axis
+    for (var j = 0; j < datePositions.length; j += 1) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      ctx.moveTo(datePositions[j], graphHeight);
+      ctx.lineTo(datePositions[j], graphHeight + 6);
+      ctx.stroke();
+
+      // Add months to X-axis
+      ctx.font = "13px calibri";
+      ctx.fillText(dateLabels[j],datePositions[j],graphHeight + 18);
+    }
+  }
+}
+
+// Returns positions for every month on x-axis
+function dateAxis () {
+  // Beginning month is february
+  var currentMonth = "02";
+  var days = [];
+  days.push(dateTransform(0));
+
+  // Loop over every date to get all the month
+  for (var i = 0; i < stringDates.length - 1; i += 1) {
+    var month = stringDates[i].substring(4,6);
+
+    // Change current month to new month
+    if (currentMonth != month ) {
+      // Add position to list
+      days.push(dateTransform(i))
+      currentMonth = month;
+    }
+  }
+  return days;
+}
+
+function addAxisLabels () {
+  // Add label for the Y-axis
+  ctx.font = "16px calibri";
+  ctx.fillStyle = 'grey';
+  ctx.fillText("°C",5,canvasHeight - 12);
+
+  // Add label for X-axis
+  ctx.fillText("Months (2014 - 2015)",35,canvasHeight - 5);
+
+  // Add arrow for Y-axis
+  ctx.beginPath();
+  ctx.strokeStyle = 'black';
+  ctx.moveTo(16,canvasHeight - 30);
+  ctx.lineTo(16, canvasHeight - 48);
+  ctx.lineTo(10, canvasHeight - 39);
+  ctx.lineTo(16, canvasHeight - 48);
+  ctx.lineTo(22, canvasHeight - 39);
+  ctx.stroke();
+
+  // Add arrow for X-axis
+  ctx.beginPath();
+  ctx.strokeStyle = 'black';
+  ctx.moveTo(185,canvasHeight - 10);
+  ctx.lineTo(205, canvasHeight - 10);
+  ctx.lineTo(197, canvasHeight - 16);
+  ctx.lineTo(205, canvasHeight - 10);
+  ctx.lineTo(197, canvasHeight - 4);
+  ctx.stroke();
+
+
+}
+
+
+function createTransform(domain, range){
+	// domain is a two-element array of the data bounds [domain_min, domain_max]
+	// range is a two-element array of the screen bounds [range_min, range_max]
+	// this gives you two equations to solve:
+	// range_min = alpha * domain_min + beta
+	// range_max = alpha * domain_max + beta
+ 		// a solution would be:
+
+    var domain_min  = domain[0]
+    var domain_max  = domain[1]
+    var range_min   = range[0]
+    var range_max   = range[1]
+
+    // formulas to calculate the alpha and the beta
+   	var alpha = (range_max - range_min) / (domain_max - domain_min)
+    var beta  = range_max - alpha * domain_max
+
+    // returns the function for the linear transformation (y= a * x + b)
+    return function(x){
+      return alpha * x + beta;
+    }
+}
+
+
+
+</script>
