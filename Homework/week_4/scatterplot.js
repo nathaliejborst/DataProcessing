@@ -112,7 +112,12 @@ window.onload = function() {
 
     // Initialize legend
     setLegend();
-  });
+
+    // Add name at bottom
+    d3.select('body').append('text')
+      .text("Nathalie Borst")
+      .attr('transform, translate('+ 5 + ',' + height + ')');
+    });
 }
 
 // Returns color for every of the 6 regions
