@@ -1,0 +1,47 @@
+Code,Country_name,EU_member
+ALB,Albania,no
+AND,Andorra,no
+ARM,Armenia,no
+AUT,Austria,yes
+AZE,Azerbaijan,no
+BEL,Belgium,yes
+BGR,Bulgaria,yes
+BIH,Bosnia and Herzegovina,no
+BLR,Belarus,no
+CHE,Switzerland,no
+CYP,Cyprus,yes
+CZE,Czechia,yes
+DEU,Germany,yes
+DNK,Denmark,yes
+ESP,Spain,yes
+FIN,Finland,yes
+FRA,France,yes
+GBR,United Kingdom,yes
+GEO,Georgia,no
+GRC,Greece,yes
+HRV,Croatia,yes
+HUN,Hungary,yes
+IRL,Ireland,yes
+ISL,Iceland,no
+ISR,Israel,no
+ITA,Italy,yes
+KAZ,Kazakhstan,no
+LTU,Lithuania,yes
+LUX,Luxembourg,yes
+LVA,Latvia,yes
+MDA,Republic of Moldova,no
+MKD,former Yugoslav Republic of Macedonia,no
+MLT,Malta,yes
+NLD,Netherlands,yes
+NOR,Norway,no
+POL,Poland,yes
+PRT,Portugal,yes
+ROU,Romania,yes
+RUS,Russian Federation,no
+SRB,Serbia,no
+SVK,Slovakia,yes
+SVN,Slovenia,yes
+SWE,Sweden,yes
+TKM,Turkmenistan,no
+TUR,Turkey,no
+UKR,Ukraine,no

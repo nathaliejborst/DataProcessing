@@ -1,0 +1,66 @@
+{
+ "code": "", "name": "European_Countries",
+ "children": [
+   {
+    "code": "", "name": "Countries",
+    "children": [
+     {
+      "code": "", "name": "EU_members",
+      "children": [
+         {"code": "AUT", "name": "Austria", "size": 123},
+         {"code": "BEL", "name": "Belgium", "size": 126},
+         {"code": "BGR", "name": "Bulgaria", "size": 120},
+         {"code": "CYP", "name": "Cyprus", "size": 90},
+         {"code": "CZE", "name": "Czechia", "size": 124},
+         {"code": "DEU", "name": "Germany", "size": 109},
+         {"code": "DNK", "name": "Denmark", "size": 95},
+         {"code": "ESP", "name": "Spain", "size": 93},
+         {"code": "FIN", "name": "Finland", "size": 90},
+         {"code": "FRA", "name": "France", "size": 111},
+         {"code": "GBR", "name": "United Kingdom", "size": 103},
+         {"code": "GRC", "name": "Greece", "size": 75},
+         {"code": "HRV", "name": "Croatia", "size": 124},
+         {"code": "HUN", "name": "Hungary", "size": 109},
+         {"code": "IRL", "name": "Ireland", "size": 105},
+         {"code": "ITA", "name": "Italy", "size": 73},
+         {"code": "LTU", "name": "Lithuania", "size": 150},
+         {"code": "LUX", "name": "Luxembourg", "size": 110},
+         {"code": "LVA", "name": "Latvia", "size": 104},
+         {"code": "MLT", "name": "Malta", "size": 86},
+         {"code": "NLD", "name": "Netherlands", "size": 87},
+         {"code": "POL", "name": "Poland", "size": 116},
+         {"code": "PRT", "name": "Portugal", "size": 100},
+         {"code": "ROU", "name": "Romania", "size": 96},
+         {"code": "SVK", "name": "Slovakia", "size": 99},
+         {"code": "SVN", "name": "Slovenia", "size": 95},
+         {"code": "SWE", "name": "Sweden", "size": 73}
+                  ]
+     },
+     {
+      "code": "", "name": "non-EU_members",
+      "children":  [
+        {"code": "ALB", "name": "Albania", "size": 45},
+        {"code": "AND", "name": "Andorra", "size": 100},
+        {"code": "ARM", "name": "Armenia", "size": 39},
+        {"code": "AZE", "name": "Azerbaijan", "size": 21},
+        {"code": "BIH", "name": "Bosnia and Herzegovina", "size": 40},
+        {"code": "BLR", "name": "Belarus", "size": 139},
+        {"code": "CHE", "name": "Switzerland", "size": 97},
+        {"code": "GEO", "name": "Georgia", "size": 59},
+        {"code": "ISL", "name": "Iceland", "size": 73},
+        {"code": "ISR", "name": "Isreal", "size": 27},
+        {"code": "KAZ", "name": "Kazakhstan", "size": 65},
+        {"code": "MDA", "name": "Republic of Moldova", "size": 105},
+        {"code": "MKD", "name": "former Yugoslav Republic of Macedonia", "size": 10},
+        {"code": "NOR", "name": "Norway", "size": 62},
+        {"code": "RUS", "name": "Russian Federation", "size": 106},
+        {"code": "SRB", "name": "Serbia", "size": 92},
+        {"code": "TKM", "name": "Turkmenistan", "size": 29},
+        {"code": "TUR", "name": "Turkey", "size": 14},
+        {"code": "UKR", "name": "Ukraine", "size": 84}
+                   ]
+    }
+                ]
+  }
+            ]
+}

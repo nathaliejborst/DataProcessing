@@ -1,0 +1,54 @@
+Code,Country_name,EU_member,Wine,Beer,Spirits,Total
+ALB,Albania,no,1.1,1.7,1.9,4.8
+AND,Andorra,no,4.3,3.1,2.6,10.0
+ARM,Armenia,no,0.1,0.4,3.2,3.8
+AUT,Austria,yes,4.1,6.0,1.7,11.8
+AZE,Azerbaijan,no,0.2,0.2,1.6,2.1
+BEL,Belgium,yes,4.3,5.8,1.7,11.8
+BGR,Bulgaria,yes,2.9,4.3,4.9,12.1
+BIH,Bosnia and Herzegovina,no,0.2,3.3,0.6,4.1
+BLR,Belarus,no,0.4,3.1,6.5,14.7
+CHE,Switzerland,no,4.7,3.2,1.8,9.7
+CYP,Cyprus,yes,2.5,3.3,3.3,9.0
+CZE,Czechia,yes,2.5,6.9,3.0,12.4
+DEU,Germany,yes,3.1,5.8,2.0,10.9
+DNK,Denmark,yes,4.3,3.5,1.6,9.5
+ESP,Spain,yes,2.1,4.4,2.7,9.3
+FIN,Finland,yes,1.7,4.3,2.0,9.0
+FRA,France,yes,6.5,1.8,2.5,11.1
+GBR,United Kingdom,yes,4.0,3.4,2.1,10.3
+GEO,Georgia,no,2.5,1.3,2.1,5.9
+GRC,Greece,yes,3.8,2.1,1.5,7.5
+HRV,Croatia,yes,6.2,4.6,1.3,12.4
+HUN,Hungary,yes,3.4,3.8,3.8,10.9
+IRL,Ireland,yes,2.6,5.0,2.0,10.5
+ISL,Iceland,no,2.0,4.4,0.7,7.3
+ISR,Israel,no,0.1,1.3,1.2,2.7
+ITA,Italy,yes,4.9,1.7,0.8,7.3
+KAZ,Kazakhstan,no,0.3,2.0,4.1,6.5
+LTU,Lithuania,yes,1.5,5.3,5.7,15.0
+LUX,Luxembourg,yes,4.8,3.8,2.3,11.0
+LVA,Latvia,yes,1.1,4.7,4.0,10.4
+MDA,Republic of Moldova,no,4.9,2.1,3.3,10.5
+MKD,former Yugoslav Republic of Macedonia,no,0.2,0.6,0.2,1.0
+MLT,Malta,yes,3.3,2.9,2.1,8.6
+NLD,Netherlands,yes,3.0,4.2,1.5,8.7
+NOR,Norway,no,2.3,2.7,1.1,6.2
+POL,Poland,yes,0.8,6.4,4.4,11.6
+PRT,Portugal,yes,6.0,2.8,0.8,10.0
+ROU,Romania,yes,3.1,5.1,1.4,9.6
+RUS,Russian Federation,no,1.1,4.1,4.8,10.6
+SRB,Serbia,no,4.2,2.7,2.1,9.2
+SVK,Slovakia,yes,1.8,3.4,4.1,9.9
+SVN,Slovenia,yes,4.1,4.6,0.9,9.5
+SWE,Sweden,yes,3.6,2.6,1.1,7.3
+TKM,Turkmenistan,no,0.8,0.8,1.3,2.9
+TUR,Turkey,no,0.1,0.8,0.5,1.4
+UKR,Ukraine,no,0.7,3.2,4.3,8.4
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
