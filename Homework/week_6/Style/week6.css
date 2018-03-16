@@ -22,3 +22,14 @@ div.tooltip_css {
   color: white;
 
 }
+
+.axis{
+  font-family: sans-serif;
+  font-size: 9px;
+  color: black;
+
+}
+
+.dropdown {
+  margin-left: 16px;
+}

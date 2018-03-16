@@ -29,7 +29,7 @@ window.onload = function() {
     var format = d3.format(",d")
 
     // Set dimensions for the barchart
-    margin = {top: 10, right: 30, bottom: 10, left: 50};
+    margin = {top: 80, right: 30, bottom: 35, left: 100};
     width = 500 - margin.left - margin.right;
     height = 350 - margin.top - margin.bottom;
 
@@ -183,31 +183,42 @@ window.onload = function() {
 
   function showBarchart (countryCode, barData) {
 
-    var barHeight = 25;
+    // Set dimensions for the barchart
+    var barHeight = 40;
+    var chartHeight = 120;
+    var chartWidth = 260;
+
+    // Specifiy variables
     var countryDetails = {};
     var country;
-    var chartHeight = 100;
+    var totalConsumption;
+    var Ydomain = ["wine", "beer", "spirits"]
 
-    var testArray = [];
+    var testData = [];
 
-    barData.forEach(function (d) {
+    // Loop over all the data to get specific details for chosen country
+    barData.forEach(function (d, i) {
       // Find country in EU dataset
       if (countryCode === d.Code) {
         // Get full namd of country
         country = d.Country_name;
+        totalConsumption = d.Total;
+
+        var countVal = d3.values(d);
+        countVal.splice(0, 3);
+        countVal.splice(3, 3);
+
+        testData = countVal;
 
         // Add alcohol details of country to data array
         countryDetails = {
           "wine": d.Wine,
           "beer": d.Beer,
-          "spirits": d.Spirits,
-          "total": d.Total
-        };
+          "spirits": d.Spirits        };
       }
     })
 
-    console.log(countryDetails);
-
+    console.log(testData);
 
     // Show chosen country as title
     svg_bar.selectAll(".chosenCountry")
@@ -215,15 +226,14 @@ window.onload = function() {
       .enter()
       .append("text")
       .attr("class", ".chosenCountry")
-      .attr("x", margin.left)
+      .attr("x", margin.left - 50)
       .attr("y", 50)
       .text(country)
       .style("font-family", "monospace")
       .style("font-size", "20px")
       .style("fill", "black");
 
-    var Ydomain = ["wine", "beer", "spirits"]
-
+    // Set Y-scale and -axis
     var y = d3.scale.ordinal()
       .domain(["wine", "beer", "spirits"])
       .rangeRoundBands([0, chartHeight], .05);
@@ -232,29 +242,33 @@ window.onload = function() {
     .orient("left")
     .outerTickSize(2);
 
+    console.log("max", d3.max(d3.values(testData)));
+
+    // Set X-scale and -axis
+    var x = d3.scale.linear().range([0, chartWidth])
+      .domain([0, (Math.ceil(d3.max(d3.values(testData))))]); // Get highest value and round to the integer
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+      .ticks(10)
+      .outerTickSize(2);
+
+    // Add axes to the svg
     svg_bar.append("g")
-    .attr("transform", "translate(100, 100)")
-    .attr("class", "y axis")
-    .call(yAxis);
+      .attr("transform", "translate("+ margin.left + "," + margin.top + ")")
+      .attr("class", "y axis")
+      .call(yAxis);
+    svg_bar.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate("+ margin.left + "," + (chartHeight + margin.top) + ")")
+      .call(xAxis)
 
-
-
-    var barDataa = ["2", "3.2", "0.7", "5"];
-
-    // // Set the dimensions for the each bar in barchart
-    // var bar = svg_bar.selectAll("g").select("bars")
-    //   .data(barDataa)
-    //   .enter()
-    //   .append("g")
-    //   .attr("x", margin.left)
-    //   .attr("transform", function(d, i) { return "translate(" + margin.left + "," + ((i * barHeight) + margin.top) + ")"; });
-    //
-    // // Add bar with correct data to barchart
-    // bar.append("rect")
-    //   .attr("width", function(d, i) { return (d * 15); })
-    //   .attr("height", barHeight - 2)
-    //   .attr("class", "bar")
-    //   .attr("fill", "steelblue");
+    // Add label to the X-axis
+    svg_bar.append("text")
+      .attr("class","x label")
+      .attr("transform", "translate(" + (margin.left + (chartWidth / 2)) + " ," + (chartHeight + margin.top + margin.bottom) + ")")
+      .style("text-anchor", "middle")
+      .text("Litres per capita in 2013");
 
 
   }
