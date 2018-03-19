@@ -33,3 +33,8 @@ div.tooltip_css {
 .dropdown {
   margin-left: 16px;
 }
+
+.barvalue {
+  font-family: "Andale Mono", monospace;
+  font-size: 13px;  
+}

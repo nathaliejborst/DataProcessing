@@ -4,9 +4,13 @@ window.onload = function() {
   var EUdata;
   var EUjson;
 
-  bubbleColor = d3.scale.ordinal().range(["#f48f42", "#249ee5"]);
+  bubbleClicked = false;
 
-  console.log("color", bubbleColor(0))
+  bubbleColor = d3.scale.ordinal().range(["#f48f42", "#249ee5"]);
+  barColor = d3.scale.ordinal()
+    .domain(["wine", "beer", "spirits"])
+    .range(["#ceffc1", "#ffed68", "#3f83a3"]);
+
   // Add files to queue
   var q = d3.queue()
   .defer(d3.csv, "Data/Countries_code_EUmember.csv")
@@ -51,6 +55,51 @@ window.onload = function() {
       .attr("height", height + margin.top + margin.bottom)
       .attr("class", "details");
 
+
+
+      ///////////////////////////////////////////////////////////////////////
+
+        // Set dimensions for the barchart
+        barHeight = 40;
+        chartHeight = 120;
+        chartWidth = 260;
+        var bar;
+        var rects;
+
+        // Show chosen country as title
+        svg_bar
+          .append("text")
+          .attr("class", "chosenCountry")
+          .attr("x", margin.left - 50)
+          .attr("y", 50)
+          .text("")
+          .style("font-family", "monospace")
+          .style("font-size", "20px")
+          .style("fill", "black");
+
+        // Set Y-scale and -axis
+        y = d3.scale.ordinal()
+          .domain(["wine", "beer", "spirits"])
+          .rangeRoundBands([0, chartHeight], .05);
+        yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left")
+          .outerTickSize(2);
+
+        // Set X-scale and -axis
+        x = d3.scale.linear().range([0, chartWidth])
+        xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom")
+          .ticks(10)
+          .outerTickSize(2);
+
+      ////////////////////////////////////////////////////////////////////
+
+
+
+
+
     // Add the tooltip, bur set to hidden
     var tooltip = d3.select("body")
         .append("div")
@@ -87,7 +136,11 @@ window.onload = function() {
       })
       .on("click",function(d,i) {
         updateData(d.code);
-        showBarchart(d.code, EUdata);
+        if (!bubbleClicked) {
+        showBarchart(d.code, getBarData(d. code, EUdata));
+      } else {
+        updateBarChart(d.code, getBarData(d. code, EUdata));
+      }
       });
 
     // Add the country codes as test to the bubbles
@@ -101,186 +154,236 @@ window.onload = function() {
     d3.select(self.frameElement).style("height", diameter + "px");
   };
 
-  // Returns an ordered non-tree like structure off all countries
-  function classes(EUjson) {
-    var classes = [];
 
-    function recurse(name, node) {
-      if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-      else classes.push({packageName: name, className: node.name, value: node.size, code: node.code});
-    }
 
-    recurse(null, EUjson);
-    return {children: classes};
+
+
+}
+
+// Returns an ordered non-tree like structure off all countries
+function classes(EUjson) {
+  var classes = [];
+
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size, code: node.code});
   }
 
-  // Updates the bubbles
-  function updateData (country) {
-    // Re-load data
-    d3.json("Data/European_alcohol_consumption.json", function(error, newData) {
-      if (error) return;
+  recurse(null, EUjson);
+  return {children: classes};
+}
 
-      // Loop over data and adjust bubble size for clicked country
-      newData.children.forEach(function (European_Countries) {
-        European_Countries.children.forEach(function (countries) {
-          countries.children.forEach(function (d) {
-            if (d.code === country) {
-              d.size = 410;
-            }
-          })
+// Updates the bubbles
+function updateData (country) {
+  // Re-load data
+  d3.json("Data/European_alcohol_consumption.json", function(error, newData) {
+    if (error) return;
+
+    // Loop over data and adjust bubble size for clicked country
+    newData.children.forEach(function (European_Countries) {
+      European_Countries.children.forEach(function (countries) {
+        countries.children.forEach(function (d) {
+          if (d.code === country) {
+            d.size = 410;
+          }
         })
       })
+    })
 
-    // Source: http://jsfiddle.net/CCRb5/
+  // Source: http://jsfiddle.net/CCRb5/
 
-    // Re-append node with new data for every country
-    var node = svg.selectAll(".node")
-      .data(bubble.nodes(classes(newData)).filter(function (d){return !d.children;}),
-      function(d) {return d.className} );
+  // Re-append node with new data for every country
+  var node = svg.selectAll(".node")
+    .data(bubble.nodes(classes(newData)).filter(function (d){return !d.children;}),
+    function(d) {return d.className} );
 
-    // Re-append g nodes
-    var nodeEnter = node.enter()
-      .append("g")
-      .attr("class", "node")
-      .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+  // Re-append g nodes
+  var nodeEnter = node.enter()
+    .append("g")
+    .attr("class", "node")
+    .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-    // Re-append circles
-    nodeEnter
-      .append("circle")
-      .attr("r", function (d) {return d.r;});
+  // Re-append circles
+  nodeEnter
+    .append("circle")
+    .attr("r", function (d) {return d.r;});
 
-    // Re-append text to bubbles
-    nodeEnter
+  // Re-append text to bubbles
+  nodeEnter
+    .append("text")
+    .text(function (d) { return d.className + ": " + format(d.value); });
+
+  // Change bubbles with new size and opacity using a transition
+  node.select("circle")
+    .transition()
+    .duration(900)
+    .attr("r", function (d) { return d.r; })
+    .style("opacity", 0.2)
+    .style("fill", function(d) { return bubbleColor(d.packageName); });
+    // .style("fill", "grey");
+
+  // Re-arrange bubbles using transition
+  node.transition()
+    .duration(700)
+    .attr("class", "node")
+    .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  // Close and remove transition
+  node.exit()
+    .remove();
+
+  // Set opicaty of clicked bubble to 100%
+  svg.select("#" + country)
+    .transition()
+    .delay(700)
+    .style("opacity", 1);
+  })
+}
+
+
+
+function getBarData (countryCode, barData) {
+  var barValues = [];
+  var currentCountry;
+
+  // Loop over all the data to get specific details for chosen country
+  barData.forEach(function (d, i) {
+    // Find country in EU dataset
+    if (countryCode === d.Code) {
+      // Get full namd of country
+      currentCountry = d.Country_name;
+      totalConsumption = d.Total;
+
+      var countryValues = d3.values(d);
+      countryValues.splice(0, 3);
+      countryValues.splice(3, 3);
+
+      barValues = countryValues;
+    }
+  })
+
+  // Update barchart title to chosen country
+  svg_bar.select(".chosenCountry")
+    .text(currentCountry);
+
+  return barValues;
+}
+
+function updateBarChart (countryCode, barValues) {
+  // Re-scale both axes with new data
+  x.domain([0, (Math.ceil(d3.max(d3.values(barValues))))]); // Get highest value and round to the integer
+
+  // Change the X-axis
+  svg_bar.select(".x.axis")
+      .call(xAxis);
+
+  // Change the bar data with new values
+  bar.data(barValues);
+
+  // Change bars to new width
+  bar.select("rect")
+    .transition()
+    .duration(800)
+    .attr("width", function(d) { return x(d);});
+}
+
+function showBarchart (countryCode, barValues) {
+  bubbleClicked = true;
+
+  // Specifiy variables
+  var Ydomain = ["wine", "beer", "spirits"]
+
+  // // Show chosen country as title
+  // svg_bar.selectAll(".chosenCountry")
+  //   .data(countryCode)
+  //   .enter()
+  //   .append("text")
+  //   .attr("class", "chosenCountry")
+  //   .attr("x", margin.left - 50)
+  //   .attr("y", 50)
+  //   .text(country)
+  //   .style("font-family", "monospace")
+  //   .style("font-size", "20px")
+  //   .style("fill", "black");
+
+  x.domain([0, (Math.ceil(d3.max(d3.values(barValues))))]); // Get highest value and round to the integer
+
+  // Add axes to the svg
+  svg_bar.append("g")
+    .attr("transform", "translate("+ margin.left + "," + margin.top + ")")
+    .attr("class", "y axis")
+    .call(yAxis);
+  svg_bar.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate("+ margin.left + "," + (chartHeight + margin.top) + ")")
+    .call(xAxis)
+
+  // Add label to the X-axis
+  svg_bar.append("text")
+    .attr("class","x label")
+    .attr("transform", "translate(" + (margin.left + (chartWidth / 2)) + " ," + (chartHeight + margin.top + margin.bottom) + ")")
+    .style("text-anchor", "middle")
+    .text("Litres per capita in 2013");
+
+  // Set the dimensions for the each bar in barchart
+  bar = svg_bar.selectAll("g").select("bars")
+    .data(barValues)
+    .enter().append("g")
+    .attr("transform", function(d, i) { return "translate("+ margin.left + "," + ((i * barHeight) + margin.top) + ")"; });
+
+  // Add bar with correct data to barchart
+  rects = bar.append("rect")
+    // .attr("width", function(d) { return x(d); })
+    .attr("width", function(d) { return 0; })
+    .attr("height", barHeight - 1)
+    .attr("class", "bar")
+    .style("cursor","pointer")
+    .style("fill", function(d, i) { return barColor(d); });
+
+  // Add animation when clicking the country bubble
+  rects
+    .transition()
+    .duration(1000)
+    .delay(function(d, i) { return (i * 200); })
+    .attr("width", function(d) { return x(d); });
+
+  // Show exact data on hover
+  bar.on("mouseover", function(d) {
+    // Change opacity of other bars
+    bar.selectAll("rect")
+      .style("opacity", 0.6);
+
+    // Set selected bar to full opacity
+    d3.select(this).select("rect")
+  	 .style("opacity", 1);
+
+    // Show exact value for selected bar
+    d3.select(this)
       .append("text")
-      .text(function (d) { return d.className + ": " + format(d.value); });
+      .style("cursor","none")
+      .attr("class", "barvalue")
+      .attr("transform", function(d, i) { return "translate(" + 6 + "," + ((i * barHeight) + (barHeight / 2) + 5) + ")"; })
+      .text(function(d) { return d; })
+  });
 
-    // Change bubbles with new size and opacity using a transition
-    node.select("circle")
-      .transition()
-      .duration(900)
-      .attr("r", function (d) { return d.r; })
-      .style("opacity", 0.2)
-      .style("fill", function(d) { return bubbleColor(d.packageName); });
-      // .style("fill", "grey");
+  bar.on("mouseout", function(d) {
+    // Set all bars back to their original color
+    bar.selectAll("rect")
+      .style("opacity", 1)
+      .style("fill", function(d, i) { return barColor(d); });
 
-    // Re-arrange bubbles using transition
-    node.transition()
-      .duration(700)
-      .attr("class", "node")
-      .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-    // Close and remove transition
-    node.exit()
+    // Delete text
+    bar.selectAll("text")
       .remove();
+  });
+}
 
-    // Set opicaty of clicked bubble to 100%
-    svg.select("#" + country)
-      .transition()
-      .delay(700)
-      .style("opacity", 1);
-    })
-  }
+// Returns the average total alcohol consumption
+function getAverage(data) {
+  EUaverage = 0;
 
-  function showBarchart (countryCode, barData) {
-
-    // Set dimensions for the barchart
-    var barHeight = 40;
-    var chartHeight = 120;
-    var chartWidth = 260;
-
-    // Specifiy variables
-    var countryDetails = {};
-    var country;
-    var totalConsumption;
-    var Ydomain = ["wine", "beer", "spirits"]
-
-    var testData = [];
-
-    // Loop over all the data to get specific details for chosen country
-    barData.forEach(function (d, i) {
-      // Find country in EU dataset
-      if (countryCode === d.Code) {
-        // Get full namd of country
-        country = d.Country_name;
-        totalConsumption = d.Total;
-
-        var countVal = d3.values(d);
-        countVal.splice(0, 3);
-        countVal.splice(3, 3);
-
-        testData = countVal;
-
-        // Add alcohol details of country to data array
-        countryDetails = {
-          "wine": d.Wine,
-          "beer": d.Beer,
-          "spirits": d.Spirits        };
-      }
-    })
-
-    console.log(testData);
-
-    // Show chosen country as title
-    svg_bar.selectAll(".chosenCountry")
-      .data(countryCode)
-      .enter()
-      .append("text")
-      .attr("class", ".chosenCountry")
-      .attr("x", margin.left - 50)
-      .attr("y", 50)
-      .text(country)
-      .style("font-family", "monospace")
-      .style("font-size", "20px")
-      .style("fill", "black");
-
-    // Set Y-scale and -axis
-    var y = d3.scale.ordinal()
-      .domain(["wine", "beer", "spirits"])
-      .rangeRoundBands([0, chartHeight], .05);
-    var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .outerTickSize(2);
-
-    console.log("max", d3.max(d3.values(testData)));
-
-    // Set X-scale and -axis
-    var x = d3.scale.linear().range([0, chartWidth])
-      .domain([0, (Math.ceil(d3.max(d3.values(testData))))]); // Get highest value and round to the integer
-    var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom")
-      .ticks(10)
-      .outerTickSize(2);
-
-    // Add axes to the svg
-    svg_bar.append("g")
-      .attr("transform", "translate("+ margin.left + "," + margin.top + ")")
-      .attr("class", "y axis")
-      .call(yAxis);
-    svg_bar.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate("+ margin.left + "," + (chartHeight + margin.top) + ")")
-      .call(xAxis)
-
-    // Add label to the X-axis
-    svg_bar.append("text")
-      .attr("class","x label")
-      .attr("transform", "translate(" + (margin.left + (chartWidth / 2)) + " ," + (chartHeight + margin.top + margin.bottom) + ")")
-      .style("text-anchor", "middle")
-      .text("Litres per capita in 2013");
-
-
-  }
-
-
-  // Returns the average total alcohol consumption
-  function getAverage(data) {
-    EUaverage = 0;
-
-    data.forEach(function(d) {
-      EUaverage += Number(d.TOTAL);
-    })
-    return EUaverage /= data.length;
-  }
+  data.forEach(function(d) {
+    EUaverage += Number(d.TOTAL);
+  })
+  return EUaverage /= data.length;
 }
