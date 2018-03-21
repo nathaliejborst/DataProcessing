@@ -1,5 +1,4 @@
 window.onload = function() {
-
   var ISOdata;
   var EUdata;
   var EUjson;
@@ -41,7 +40,7 @@ window.onload = function() {
     bubble = d3.layout.pack()
         .sort(null)
         .size([diameter, diameter])
-        .padding(1.5);
+        .padding(3);
 
     // Add the svg for the bubble chart to the html (global because used in update function)
     svg = d3.select("body").append("svg")
@@ -72,10 +71,10 @@ window.onload = function() {
           .attr("class", "chosenCountry")
           .attr("x", margin.left - 50)
           .attr("y", 50)
-          .text("")
-          .style("font-family", "monospace")
-          .style("font-size", "20px")
-          .style("fill", "black");
+          .text("");
+          // .style("font-family", "monospace")
+          // .style("font-size", "20px")
+          // .style("fill", "black");
 
         // Set Y-scale and -axis
         y = d3.scale.ordinal()
@@ -369,13 +368,40 @@ function showBarchart (countryCode, barValues) {
   bar.on("mouseout", function(d) {
     // Set all bars back to their original color
     bar.selectAll("rect")
-      .style("opacity", 1)
-      .style("fill", function(d, i) { return barColor(d); });
+      .style("opacity", 1);
 
     // Delete text
     bar.selectAll("text")
       .remove();
   });
+}
+
+function onClicked(button) {
+
+  var countryCode;
+
+  switch (button) {
+    case "wine":
+      countryCode = "FRA";
+      console.log("wine");
+      break;
+    case "beer":
+      countryCode = "CZE";
+      console.log("beer");
+      break;
+    case "spirits":
+      countryCode = "BLR";
+      console.log("spirits");
+      break;
+  }
+
+  updateData(country);
+//   if (!bubbleClicked) {
+//   showBarchart(d.code, getBarData(d. code, EUdata));
+// } else {
+//   updateBarChart(d.code, getBarData(d. code, EUdata));
+// }
+//   console.log("clicked");
 }
 
 // Returns the average total alcohol consumption
