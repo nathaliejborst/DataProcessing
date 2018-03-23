@@ -6,7 +6,6 @@ barColor = d3.scale.ordinal()
   .domain(["wine", "beer", "spirits"])
   .range(["#ceffc1", "#ffed68", "#3f83a3"]);
 
-
 // Set dimensions for bubble chart
 diameter = 350;
 format = d3.format(",d")
@@ -61,7 +60,7 @@ function initSVGs () {
 }
 
 /**
- * SHows source and name
+ * Shows source and name
  */
 function initCredits () {
   // Data to be shown

@@ -13,7 +13,6 @@ function loadData(error, file1, file2) {
   initBubblechart();
   initBarchart();
 
-
   // Set actions for button click
   var highestConsumers = getHighestConsumers();
   handleButtonClick(highestConsumers);
@@ -65,9 +64,6 @@ function handleButtonClick (highestConsumers) {
   });
 
 }
-
-
-
 
 /**
  * Returns array with countries with the highest consumption of wine, beer and

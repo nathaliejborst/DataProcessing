@@ -18,7 +18,6 @@ function updateData (country) {
       })
     })
 
-
   // Re-append node with new data for every country
   var node = svg.selectAll(".node")
     .data(bubble.nodes(classes(newData)).filter(function (d){return !d.children;}),
